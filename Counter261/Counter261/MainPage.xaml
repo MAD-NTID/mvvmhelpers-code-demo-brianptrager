@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:viewmodels="clr-namespace:Counter261.ViewModels"
+             x:Class="Counter261.MainPage">
+    <ContentPage.BindingContext>
+        <viewmodels:CountViewModel/>
+    </ContentPage.BindingContext>
+
+    <Grid RowDefinitions="*, Auto, Auto, *">
+        <Entry Text="{Binding CountDisplay}"
+               Grid.Row="0" />
+        <Label x:Name="countLabel"
+               Text="{Binding CountDisplay}"
+               HorizontalOptions="Center"
+               Grid.Row="1"
+               FontSize="Medium" />
+        <Button 
+                Text="Count++"
+                HorizontalOptions="Center"
+                Grid.Row="2"
+                Command="{Binding IncreaseCount}" />
+    </Grid>
+
+</ContentPage>
