@@ -8,8 +8,10 @@
     </ContentPage.BindingContext>
 
     <Grid RowDefinitions="*, Auto, Auto, *">
-        <Entry Text="{Binding CountDisplay}"
-               Grid.Row="0" />
+        <Entry 
+            x:Name="countEntry"
+            Text="1"
+             Grid.Row="0" />
         <Label x:Name="countLabel"
                Text="{Binding CountDisplay}"
                HorizontalOptions="Center"
@@ -19,7 +21,9 @@
                 Text="Count++"
                 HorizontalOptions="Center"
                 Grid.Row="2"
-                Command="{Binding IncreaseCount}" />
+                Command="{Binding IncreaseCount}"
+                CommandParameter="{Binding Source={x:Reference countEntry}, Path=Text}"
+            />
     </Grid>
 
 </ContentPage>

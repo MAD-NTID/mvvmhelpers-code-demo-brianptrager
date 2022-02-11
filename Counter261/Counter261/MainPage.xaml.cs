@@ -12,9 +12,12 @@ namespace Counter261
 {
     public partial class MainPage : ContentPage
     {
+        public CountViewModel CVM => ((CountViewModel)BindingContext);
         public MainPage()
         {
             InitializeComponent();
+
+            CVM.IncreaseCount.Execute("3");
         }
 
         

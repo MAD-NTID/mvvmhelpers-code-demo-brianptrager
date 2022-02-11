@@ -11,29 +11,32 @@ namespace Counter261.ViewModels
 {
     public class CountViewModel : ViewModelBase
     {
-        public ObservableRangeCollection<string> People { get; }
-
+        //public ObservableRangeCollection<string> People { get; }
+        public Command IncreaseCount { get; }
         public CountViewModel()
         {
-            IncreaseCount = new Command(OnIncreaseCount);
-            Title = "Super Duper Counter";
-            HasIzzy = true;
-            People = new ObservableRangeCollection<string>();
-            CallServerCommand = new AsyncCommand(CallServer);
+            IncreaseCount = new Command<string>(OnIncreaseCount);
+            //Title = "Super Duper Counter";
+            //HasIzzy = true;
+            //People = new ObservableRangeCollection<string>();
+            //CallServerCommand = new AsyncCommand(CallServer);
         }
-        public ICommand IncreaseCount { private set; get; }
-        public ICommand CallServerCommand { get; set; }
+        
+        //public ICommand CallServerCommand { get; set; }
 
-        async Task CallServer()
-        {
-            var people = new List<string>() { "Babe Ruth", "Jackie Robinson", "Hank Aaron" };
-            await Task.Run(() => People.AddRange(people)); //Notification of collection only occurs ONCE!
-        }
+        //async Task CallServer()
+        //{
+        //    var people = new List<string>() { "Babe Ruth", "Jackie Robinson", "Hank Aaron" };
+        //    await Task.Run(() => People.AddRange(people)); //Notification of collection only occurs ONCE!
+        //}
 
-        public void OnIncreaseCount()
+        public void OnIncreaseCount(string num)
         {
-            count++;
-            CountDisplay = $"You clicked {count} time(s).";
+            if (int.TryParse(num, out int validNum))
+            {
+                count += validNum;
+                CountDisplay = $"You clicked {count} time(s).";
+            }
         }
         private int count = 0;
 
